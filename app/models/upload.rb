@@ -12,7 +12,7 @@ class Upload < ActiveRecord::Base
 
   def self.upload_to_s3(file, title, artist)
 	   upload = Upload.new(title: title, artist: artist)
-     file_name = "#{artist}-#{title}"
+     file_name = "#{artist}-#{title}.mp3"
      FileUploader.store("#{file_name}", add_meta_data(file, title, artist), CURRENT_BUCKET, access: :public_read)
      upload.url = "http://#{CURRENT_BUCKET}.s3.amazonaws.com/#{file_name}"
      upload.save
