@@ -5,7 +5,7 @@ gem 'aws-s3'
 gem 'ruby-mp3info', :require => "mp3info"
 # gem 'id3lib-ruby'
 # gem 'rack-cors', :require => 'rack/cors'
-
+gem 'faraday'
 gem 'slim'
 gem 'slim-rails'
 gem 'mp3info'
