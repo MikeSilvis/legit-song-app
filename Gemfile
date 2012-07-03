@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.5'
 gem 'aws-s3'
-gem 'sqlite3'
 gem 'ruby-mp3info', :require => "mp3info"
 # gem 'id3lib-ruby'
 # gem 'rack-cors', :require => 'rack/cors'
@@ -16,7 +15,12 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
+group :development do
+	gem 'sqlite3'
+end
+group :production do
+  gem 'pg'
+end
 gem 'jquery-rails'
 
 # To use Jbuilder templates for JSON
