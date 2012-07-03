@@ -19,4 +19,4 @@ class Awesome
 
 end
 
-print Awesome.fetch('http://www.ruby-lang.org')
+# print Awesome.fetch('http://www.ruby-lang.org')
