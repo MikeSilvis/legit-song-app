@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(:version => 20120614154602) do
 
   create_table "uploads", :force => true do |t|
     t.string   "url"
-    t.integer  "room_id"
-    t.string   "user_token"
+    t.string   "artist"
+    t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

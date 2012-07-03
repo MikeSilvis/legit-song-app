@@ -1,33 +1,8 @@
 h3 Upload File
 
-form#file_upload*{multipart: true, enctype: "multipart/form-data"}
-  = hidden_field_tag :file_user_token, @user_token
-  = hidden_field_tag :file_room_id, @room_id
-  = file_field_tag :file
+= form_tag '/uploader', :multipart => true do
+  = text_field_tag :artist, nil, placeholder: "Artist"
   br
+  = text_field_tag :title, nil, placeholder: "Title"
   br
-  a#upload_file
-    | Upload
-    br
-  a#uploaded_files = "#{@uploaded_files.count} files uploaded"
-progress
-
-coffee:
-  BASE_URL = 'hackchat.dev'
-
-  $ ->
-    $('#upload_file').click ->
-      form = $('#file_upload')[0]
-      data =  new FormData form
-
-      jqxhr = $.ajax({
-        type: 'POST',
-        url: "http://files.#{BASE_URL}/uploader",
-        data: data,
-        cache: false,
-        contentType: false,
-        processData: false
-      })
-
-      jqxhr.success (data) ->
-        $('#message_content').append "<a>#{data.url}</a>"
+  = submit_tag "Submit"
