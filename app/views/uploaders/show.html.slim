@@ -3,6 +3,7 @@ h1 Uploaded Files
 table(border="1")
 	tr
 		th
+		th
 		th title
 		th artist
 		th url
@@ -11,6 +12,7 @@ table(border="1")
 	- @files.each do |file|
 		tr
 			td= file.id
+			td= link_to "X",
 			td= file.title
 			td= file.artist
 			td= file.url
