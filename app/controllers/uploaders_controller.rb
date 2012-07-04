@@ -2,7 +2,7 @@ require 'open-uri'
 class UploadersController < ApplicationController
 
   def show
-    # @uploaded_files = Upload.where(user_token: @user_token, room_id: @room_id)
+    @files = Upload.all
   end
 
   def create
