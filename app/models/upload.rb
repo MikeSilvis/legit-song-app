@@ -15,16 +15,16 @@ class Upload < ActiveRecord::Base
   def self.upload_to_s3(file, title, artist, song_id, artwork)
      file_name = "#{artist}-#{title}.mp3"
 	   upload = Upload.new(title: title, artist: artist, song_id: song_id, url: "http://#{CURRENT_BUCKET}.s3.amazonaws.com/#{file_name}", artwork: artwork)
-     FileUploader.store("#{file_name}", add_meta_data(file, title, artist), CURRENT_BUCKET, access: :public_read) if upload.save
+     FileUploader.store("#{file_name}", upload.add_meta_data(file, title, artist), CURRENT_BUCKET, access: :public_read) if upload.save
   end
 
-  def self.add_meta_data(file_url, title, artist)
+  def add_meta_data(file_url, title, artist)
   	file = open(catch_redirect(file_url))
 		Mp3Info.open(file.path) do |mp3|
 		   mp3.tag.title  = title
 		   mp3.tag.artist = artist
 		end
-		file
+		self.errors.add(:file, "FILE WON't UPLOAD") unless file
   end
 
 end
