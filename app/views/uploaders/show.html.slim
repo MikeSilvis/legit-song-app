@@ -1,7 +1,8 @@
 h1 Uploaded Files
 
-table
+table(border="1")
 	tr
+		th
 		th title
 		th artist
 		th url
@@ -9,6 +10,7 @@ table
 		th artwork
 	- @files.each do |file|
 		tr
+			td= file.id
 			td= file.title
 			td= file.artist
 			td= file.url
