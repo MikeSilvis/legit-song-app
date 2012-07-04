@@ -18,9 +18,8 @@ class UploadersController < ApplicationController
   end
 
   def destroy
-    @dummy = Dummy.find(params[:id])
-    @dummy.destroy
-    redirect_to "/uploader"
+    Upload.find(params[:id]).destroy
+    redirect_to "/uploaders"
   end
 
 end
