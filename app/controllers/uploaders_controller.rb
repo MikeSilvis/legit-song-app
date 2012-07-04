@@ -1,7 +1,8 @@
 require 'open-uri'
+
 class UploadersController < ApplicationController
 
-  def show
+  def index
     @files = Upload.all
   end
 
@@ -14,6 +15,12 @@ class UploadersController < ApplicationController
       #end
     end
     render json: "MIKE YOUR AWESOME", status: :created
+  end
+
+  def destroy
+    @dummy = Dummy.find(params[:id])
+    @dummy.destroy
+    redirect_to "/uploader"
   end
 
 end

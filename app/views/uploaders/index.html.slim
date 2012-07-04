@@ -12,7 +12,7 @@ table(border="1")
 	- @files.each do |file|
 		tr
 			td= file.id
-			td= link_to "X",
+			td = link_to 'x', uploader_path(file), :confirm => 'Are you sure?', :method => :delete
 			td= file.title
 			td= file.artist
 			td= file.url

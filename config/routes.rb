@@ -1,3 +1,3 @@
 FileUpload::Application.routes.draw do
-  resource :uploader
+  resources :uploaders
 end
