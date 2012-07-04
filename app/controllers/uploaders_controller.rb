@@ -3,7 +3,7 @@ require 'open-uri'
 class UploadersController < ApplicationController
 
   def index
-    @files = Upload.all
+    @files = Upload.order(:title).all
   end
 
   def create
