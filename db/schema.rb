@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120614154602) do
+ActiveRecord::Schema.define(:version => 20120704122414) do
 
   create_table "uploads", :force => true do |t|
     t.string   "url"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20120614154602) do
     t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "song_id"
+    t.string   "artwork"
   end
 
 end

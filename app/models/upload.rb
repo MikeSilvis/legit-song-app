@@ -1,7 +1,9 @@
 require 'open-uri'
+
 class Upload < ActiveRecord::Base
-  attr_accessible :url, :artist, :title
-  AUTH = "03%3Aad986f5e59838895cd867706aad40c13%3A1341336508%3A1117341873%3ADC-US"
+  attr_accessible :url, :artist, :title, :song_id, :artwork
+  validates_uniqueness_of :song_id
+  AUTH = "03%3Aa93d72140f864529e3c350aaf5231bf2%3A1334250701%3A1144071075%3ADC-US"
 
   def self.catch_redirect(uri_str)
     resp = Faraday.get uri_str do |req|
@@ -10,12 +12,10 @@ class Upload < ActiveRecord::Base
     resp.headers["location"]
   end
 
-  def self.upload_to_s3(file, title, artist)
-	   upload = Upload.new(title: title, artist: artist)
+  def self.upload_to_s3(file, title, artist, song_id, artwork)
      file_name = "#{artist}-#{title}.mp3"
-     FileUploader.store("#{file_name}", add_meta_data(file, title, artist), CURRENT_BUCKET, access: :public_read)
-     upload.url = "http://#{CURRENT_BUCKET}.s3.amazonaws.com/#{file_name}"
-     upload.save
+	   upload = Upload.new(title: title, artist: artist, song_id: song_id, url: "http://#{CURRENT_BUCKET}.s3.amazonaws.com/#{file_name}", artwork: artwork)
+     FileUploader.store("#{file_name}", add_meta_data(file, title, artist), CURRENT_BUCKET, access: :public_read) if upload.save
   end
 
   def self.add_meta_data(file_url, title, artist)
